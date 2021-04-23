@@ -21,15 +21,16 @@ app.post("/api/notes", (req, res) => {
       fs.writeFile('./db/db.json', JSON.stringify(notes), (e, d) => {
         res.json(200);
       })
-      fs.writeFile('./db/db.json', JSON.stringify(db), function(err){
-        if (err) {
-            return false;
-        } else {
-            return res.json(true);
-        }
-    });
-});
-}); 
+//       fs.writeFile('./db/db.json', JSON.stringify(db), function(err){
+//         if (err) {
+//             return false;
+//         } else {
+//             return res.json(true);
+//         }
+//     });
+// });
+    })}
+); 
 // app.post('/api/notes', (req, res) => {
 //     const newRes = req.body;
 //     console.log(newRes);
