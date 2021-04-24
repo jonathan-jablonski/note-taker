@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: true })); // User added query-terms
 app.use(express.json()); // Converting data to JSON, parsing inputted data
 app.use(express.static('public'))
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, '../public/index.html')));
-app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, '../Develop/public/notes.html')));
+app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, '../public/notes.html')));
 
 
 
@@ -39,7 +39,7 @@ app.get('/api/notes', (req, res) => {
 
 // Delete button
 app.delete("/api/notes/:id", function(req, res) {
-    fs.readFile("db/db.json", "utf8", function(error, data) {
+    fs.readFile("./db/db.json", "utf8", function(error, data) {
       let noteId = req.params.id;
       let noteData = JSON.parse(data);
       noteData = noteData.filter(function(note) {
@@ -49,7 +49,7 @@ app.delete("/api/notes/:id", function(req, res) {
             return false;
           };
       }); 
-      fs.writeFile("db/db.json", JSON.stringify(noteData), function(error){
+      fs.writeFile("./db/db.json", JSON.stringify(noteData), function(error){
         if (error)
         throw error;
         res.end(console.log("Deleted Successfully"));
