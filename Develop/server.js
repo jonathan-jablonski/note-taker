@@ -37,19 +37,7 @@ app.get('/api/notes', (req, res) => {
     });
 });
 
-// // Checking to see if notes contain any inputs
-// app.post('/api/notes', (req, res) => {
-//     const newRes = req.body;
-//     console.log(newRes);
-//     if (newRes.title > 1 && newRes.text > 1) {
-//         db.push(newRes);
-
-//         res.json(true);
-//     } else {
-//         res.json({ err: 'Title or text is too short!' })
-//     }
-// });
-
+// Delete button
 app.delete("/api/notes/:id", function(req, res) {
     fs.readFile("db/db.json", "utf8", function(error, data) {
       let noteId = req.params.id;
