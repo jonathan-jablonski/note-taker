@@ -68,8 +68,7 @@ node server.js
 
 Use this project to keep track of notes that you have created throughout the day. Delete and view them at your will as well.
 
-
-
+![hw11demo](https://user-images.githubusercontent.com/74980325/115971344-82a5e480-a50d-11eb-97c7-dfcd6330c4de.gif)
 
 
 <!-- CONTRIBUTING -->
