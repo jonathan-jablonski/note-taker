@@ -9,8 +9,8 @@ const uuid = require('uuid-random');
 app.use(express.urlencoded({ extended: true })); // User added query-terms 
 app.use(express.json()); // Converting data to JSON, parsing inputted data
 app.use(express.static('public'))
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, '../public/index.html')));
-app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, '../public/notes.html')));
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, './public/index.html')));
+app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, './public/notes.html')));
 
 
 
