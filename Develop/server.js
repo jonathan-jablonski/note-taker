@@ -11,15 +11,8 @@ app.use(express.json()); // Converting data to JSON, parsing inputted data
 app.use(express.static('public'))
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, '../public/index.html')));
 app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, '../Develop/public/notes.html')));
-app.get('/api/notes', (req, res) => res.json(db));
 
-// Get data from db.json
-app.get('/api/notes', (req, res) => {
-    fs.readFile('../db/db.json', 'utf-8', (err, data) => {
-        res.json(JSON.parse(data));
-        return res.json(JSON.parse(data));
-    });
-});
+
 
 //Write inputs to database of objects
 app.post("/api/notes", (req, res) => {
@@ -30,26 +23,32 @@ app.post("/api/notes", (req, res) => {
         newNote.id = uuid();
         notes.push(newNote);
         fs.writeFile('./db/db.json', JSON.stringify(notes),"utf-8", (e, d) => {
-            res.json(200);
+            return res.json(newNote);
         })
-        return res.json(newNote);
+        
     });
 });
 
-
-
-// Checking to see if notes contain any inputs
-app.post('/api/notes', (req, res) => {
-    const newRes = req.body;
-    console.log(newRes);
-    if (newRes.title > 1 && newRes.text > 1) {
-        db.push(newRes);
-
-        res.json(true);
-    } else {
-        res.json({ err: 'Title or text is too short!' })
-    }
+// Get data from db.json
+app.get('/api/notes', (req, res) => {
+    fs.readFile('./db/db.json', 'utf-8', (err, data) => {
+        console.log(JSON.parse(data));
+        res.json(JSON.parse(data));
+    });
 });
+
+// // Checking to see if notes contain any inputs
+// app.post('/api/notes', (req, res) => {
+//     const newRes = req.body;
+//     console.log(newRes);
+//     if (newRes.title > 1 && newRes.text > 1) {
+//         db.push(newRes);
+
+//         res.json(true);
+//     } else {
+//         res.json({ err: 'Title or text is too short!' })
+//     }
+// });
 
 // app.delete("/api/notes/:id", function(req, res) {
 //     fs.readFile("db/db.json", "utf8", function(error, data) {
